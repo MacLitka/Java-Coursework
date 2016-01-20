@@ -1,0 +1,18 @@
+//This code runs the "GuessingGameGUI"
+
+package myWorkspace;
+
+import javax.swing.JFrame;
+
+//Demo class for the game
+public class GuessGameGUIDEMO {
+
+	public static void main(String[] args) {
+		GuessingGameGui game= new GuessingGameGui();
+		game.setVisible(true);
+	
+		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+
+}
