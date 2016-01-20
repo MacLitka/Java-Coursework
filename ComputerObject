@@ -1,0 +1,174 @@
+//Class for a custom Object called "Computer" with associated methods
+//Use the file "ComputerDemo" to see a demo
+package myWorkspace;
+
+
+public class Computer 
+{
+private String operatingSystem;
+private int gigsMemory;
+private boolean on;
+
+
+
+public Computer()
+{
+	operatingSystem="Mac OS X";
+	gigsMemory=8;
+	on=false;
+}
+
+
+//if button is true, the computer is considered to be on
+public Computer(String os, int mem, boolean button)
+{
+	operatingSystem=os;
+	gigsMemory=mem;
+	on=button;
+}
+
+
+
+public void display()
+{
+	System.out.println("Operating system: "+operatingSystem);
+	System.out.println("Gigs of memory: "+gigsMemory);
+	if(on==false)
+	{
+		System.out.println("The computer is off.");
+	}
+	else
+	{
+		System.out.println("The computer is on");
+	}
+}
+
+
+
+//find out if the computer is on or off
+public boolean isOn()
+{
+	return on;
+}
+
+
+
+//turn the computer on by entering "true", off by entering "false"
+public void turnOn(boolean button)
+{
+	on=button;
+}
+
+
+
+//find out what operating system the computer is running
+public String getOS()
+{
+	return operatingSystem;
+}
+
+
+
+//change the computer's operating system
+public void installOS(String os)
+{
+	operatingSystem=os;
+}
+
+//see how many gigs of memory computer has
+public int getMemory()
+{
+	return gigsMemory;
+}
+//sets the memory
+public void setMemory(int mem)
+{
+	gigsMemory=mem;
+}
+
+
+
+//determines if the attributes of two computers are the same
+public boolean equals(Computer comp)
+ {
+
+	if(operatingSystem==comp.getOS() && gigsMemory==comp.getMemory() && on==comp.isOn())
+	{
+		return true;
+	}
+	else
+		return false;
+ }
+
+}
+
+
+
+//Sub-Class "Laptop"
+ class Laptop extends Computer{
+	
+	private int weight;
+	
+	private double screenSize;
+	
+	
+	
+	//default constructor for sub-class
+	public Laptop()
+	{
+		super(null,0,false);
+		screenSize=0;
+		weight=0;
+	}
+	
+	
+	//defined parameter constructor for sub-class
+	public Laptop(String os, int mem, boolean button, double scrnsize, int wght) 
+	{
+	super(os,mem,button);
+	screenSize=scrnsize;
+	weight=wght;
+	
+	}
+	
+	
+	//setter for Screen Size
+	public void setScreenSize(double scrnsize)
+	{
+		screenSize=scrnsize;
+	}
+	
+	
+	//getter for Screen Size
+	public double getScreenSize()
+	{
+		return screenSize;
+	}
+	
+	
+	//setter for weight
+	public void setWeight(int wght)
+	{
+		weight=wght;
+	}
+	
+	
+	//getter for weight
+	public int getWeight()
+	{
+		return weight;
+	}
+	
+	
+	//display method
+	public void display()
+	{
+		super.display();
+		
+		System.out.println("Screen Size: "+screenSize+" inches");
+		System.out.println("Weight: "+weight+" lbs");
+		
+	}
+	
+	
+}
