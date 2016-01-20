@@ -1,0 +1,57 @@
+//Asks the user for desired number of lotto tickets
+//Generates lotto tickets that contain 5 random numbers plus a sixth "Mega number"
+
+package myWorkspace;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SuperLottoPlusArrayList {
+
+	public static void main(String[] args) 
+	{
+		Scanner scan=new Scanner(System.in);
+		System.out.println("How many lottery tickets would you like? ");
+		int numTics=scan.nextInt();
+		
+		for (int i=0; i<numTics; i++)
+		{
+			printTicket(generateSuperLottoNumbers());
+		}
+		
+		
+	}
+public static ArrayList<Integer> generateSuperLottoNumbers()
+{
+	 ArrayList <Integer> lottoNums= new ArrayList <Integer> (6) ;
+			 
+			for (int i=0; i<5; i++)
+	{
+		lottoNums.add(i,(int)(47*Math.random())+1);
+		
+		if(i==4)
+		{
+			lottoNums.add(i+1,(int)(27*Math.random())+1);
+			
+		}
+		
+		
+	}
+	return lottoNums;
+}
+
+public static void printTicket(ArrayList <Integer> nums)
+{
+	System.out.println();
+	for(int i=0; i<6; i++)
+	{ 
+		if(i==5)
+		{
+			System.out.print("(MEGA: "+nums.get(i)+")");
+			break;
+		}
+		System.out.print(nums.get(i)+" ");
+	}
+}
+
+}
