@@ -1,0 +1,71 @@
+//This is a console based guessing game
+//It is run through the file "Demo" and requires the file "BadGuessException" as well
+
+package myWorkspace;
+
+import java.util.Scanner;
+
+
+
+import java.util.InputMismatchException;
+
+public class GuessingGame {
+
+	public static void main(String[] args) 
+	{
+		
+		
+		
+		int amount;
+		boolean run=true;
+		int guess=0;
+		int counter=0;
+		int num=(int) (1+Math.random()*10);
+		Scanner scan=new Scanner(System.in);
+		
+		
+		//while loop allows player to keep guessing until they get
+		//the right answer
+		while(guess!=num || run)
+	{
+			run=false;
+		    counter++;
+		    
+		    
+		    
+		    System.out.println("Guess a number between 1 and 10");
+			
+		try
+		{
+			guess=scan.nextInt();
+			
+			if(guess>10 || guess<1)
+			{
+				throw new BadGuessException();
+			}
+		}
+		
+		//catches error for a guess outside of the range [1,10]
+		catch(BadGuessException e)
+		{
+			System.out.println(e.getMessage());
+			run=true;
+			counter--;
+		}
+		
+		//catches error if the guess is not formatted correctly and subtracts one
+		//from the counter so the user is not charged a guess
+		catch(InputMismatchException e)
+		{
+			System.out.println("Sorry you entered and invalid number format");
+			scan.nextLine();
+			run=true;
+			counter--;
+		}
+		
+	}
+		
+		System.out.print("YOU GOT IT! It took you "+counter+" guesses");
+
+  }
+}
