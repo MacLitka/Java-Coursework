@@ -1,0 +1,29 @@
+//A demo class for an Object type "Computer" 
+//Displays various functions and statuses of the object via the console
+
+package myWorkspace;
+
+public class Demo extends Laptop
+{
+
+	public static void main(String[] args) 
+	{
+		Laptop myLaptop=new Laptop();
+		
+		myLaptop.turnOn(true);
+		myLaptop.installOS("Windows 95");
+		myLaptop.setMemory(16);
+		myLaptop.setScreenSize(13.5);
+		myLaptop.setWeight(5);
+		
+		
+		myLaptop.display();
+		
+		Laptop myLaptop2=new Laptop("Mac OS X ElCapitan", 32, true,15,6);
+		myLaptop2.display();
+
+		
+		
+	}
+
+}
