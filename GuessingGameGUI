@@ -1,0 +1,174 @@
+//This is a guessing game with a GUI interface. It is run through the file "GuessingGameGUIDemo"
+
+package myWorkspace;
+import javax.swing.*;
+import javax.swing.ImageIcon;
+import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.event.*;
+import java.util.InputMismatchException;
+
+
+
+public class GuessingGameGui extends JFrame implements ActionListener 
+{
+	
+	public static final int WIDTH= 500; 
+	public static final int HEIGHT= 400;
+	private JTextField enterHere;
+	private JLabel outPutLabel;
+	private Container myFrame;
+	private JPanel myPanel;
+	
+	private int counter, num;
+	
+	
+	public  GuessingGameGui()
+	{
+		
+		//creates counter to keep track of guess attempts
+		//creates random integer between 1 and 10
+		counter=0;
+		num=(int) (1+Math.random()*10);
+		
+		
+		//creates JFrame
+		 myFrame = getContentPane();
+		myFrame.setLayout(new BorderLayout());
+		
+		//sets size of JFrame
+		setSize(WIDTH, HEIGHT);
+		
+		//sets title of JFrame
+		setTitle("Josh's Guessing game");
+		
+		
+		
+				
+		
+		//initialize guess button
+		JButton guessButton= new JButton("Guess");
+		guessButton.addActionListener(this);
+		
+		//initialize north and south labels
+		JLabel myLabel= new JLabel("Guess a number between 1 and 10?");
+		
+		//initialize JLabel for output in the south
+		 outPutLabel= new JLabel("");
+		 
+		
+		//initialize center text field
+		 enterHere= new JTextField();
+
+		
+		
+		//initialize panel and add text field to center of panel
+		 myPanel=new JPanel(new BorderLayout());
+		myPanel.add(enterHere, BorderLayout.CENTER);
+		
+		
+		
+		
+		
+		
+		// set layout of JFrame content pane
+	    myFrame.setLayout(new BorderLayout());
+	    
+	    //add JPanel which contains text field
+	    myFrame.add(myPanel, BorderLayout.CENTER);
+	    //myFrame.add(label, BorderLayout.CENTER);
+	    
+	    //add JButton "guess" 
+	    myFrame.add(guessButton, BorderLayout.EAST);
+	    
+	   
+		//add JLabel "Guess a number..." at the top of frame
+	    myFrame.add(myLabel, BorderLayout.NORTH);
+	    
+	    //add JLabel for output
+	    myFrame.add(outPutLabel, BorderLayout.SOUTH);
+	    outPutLabel.setOpaque(true);
+	    outPutLabel.setText("Josh's Guessing Game");
+	    
+	    
+	    
+	 
+	   
+	  }
+				
+			
+	
+    
+	      public void actionPerformed(ActionEvent e)
+	      {
+	        String actionCommand= e.getActionCommand();
+	        if(actionCommand.equals("Guess"))
+	        		{
+	        		counter++;
+	        		checkGuess();
+	        		
+	        		}
+	      }
+
+
+
+	      //code for the actual game
+			private void checkGuess() 
+			{
+				
+				
+				String guess=enterHere.getText();
+				int b;
+				
+			
+					
+			try
+				{
+					b=Integer.parseInt(guess);
+					if(b>10||b<1)
+					{
+						outPutLabel.setBackground(Color.RED);
+						outPutLabel.setText("Please enter a number between 1 and 10");
+					}
+					
+					else if(b!=num)
+					{
+						outPutLabel.setBackground(Color.GRAY);
+						outPutLabel.setText("Sorry, try again. You have tried "+counter +" time(s)");
+						
+					}
+					
+					else{
+						outPutLabel.setText("You got it! It took you "+counter+" tries");
+						outPutLabel.setBackground(Color.YELLOW);
+						counter=0;
+						num=(int) (1+Math.random()*10);
+					}
+				}
+				
+				
+				
+				//catches error if the guess is not formatted correctly and subtracts one
+				//from the counter so the user is not charged a guess
+				catch(NumberFormatException e)
+				{
+					outPutLabel.setBackground(Color.RED);
+					outPutLabel.setText("Sorry you entered and invalid number format");
+					
+					
+					counter--;
+				}
+				
+			}
+				
+		}
+		  
+				
+	
+	
+	      
+		
+
+
+
+
